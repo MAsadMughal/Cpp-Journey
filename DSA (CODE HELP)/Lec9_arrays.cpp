@@ -24,25 +24,43 @@ using namespace std;
 //     min_and_max(arr, 4); // here keep in mind changing this array in another function will change original array because address of first element is being passed.
 // }
 
-void reverse_arr(int arr[], int size)
-{
-    for (int i = 0; i < size / 2; i++)
-    {
-        int temp = arr[i];
-        arr[i] = arr[size - i - 1];
-        arr[size - i - 1] = temp;
-    }
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
+// //________________________
+// // Reversing an array
+// void reverse_arr(int arr[], int size)
+// {
+//     for (int i = 0; i < size / 2; i++)
+//     {
+//         swap(arr[i], arr[size - i - 1]);
+//     }
+//     for (int i = 0; i < size; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+//     cout << endl;
+// }
 
-int main()
-{
-    int arr[] = {1, 2, 3, 4, 5, 6};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    reverse_arr(arr, size);
-    return 0;
-}
+// void reverse_arr_babbar_method(int arr[], int size)
+// {
+//     int start = 0;
+//     int end = size - 1;
+//     while (start < end)
+//     {
+//         swap(arr[start], arr[end]);
+//         start++;
+//         end--;
+//     }
+
+//     for (int i = 0; i < size; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+//     cout << endl;
+// }
+
+// int main()
+// {
+//     int arr[] = {1, 2, 3, 5, 6};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+//     reverse_arr_babbar_method(arr, size);
+//     return 0;
+// }
