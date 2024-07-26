@@ -95,3 +95,35 @@ using namespace std;
 //     }
 //     cout << arr[mid];
 // }
+
+//_______________
+// Pivot Index of array
+int main()
+{
+    vector<int> arr = {1, 2, 4, 3};
+    int leftSum = 0;
+    int rightSum = 0;
+    int mid = 0;
+    for (int i = 1; i < arr.size(); i++)
+    {
+        rightSum += arr[i];
+    }
+    while (rightSum != leftSum && mid < arr.size() - 1) // Instead of while for loop is far better approach
+    {
+        cout << leftSum << " " << rightSum << endl;
+        mid++;
+        leftSum += arr[mid - 1];
+        rightSum -= arr[mid];
+        cout << leftSum << " " << rightSum << endl;
+    }
+    if (rightSum == leftSum)
+    {
+        cout << mid;
+        return mid;
+    }
+    else
+    {
+        cout << -1;
+        return -1;
+    }
+}
