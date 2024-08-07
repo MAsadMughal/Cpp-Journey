@@ -53,65 +53,16 @@ void mergeSort(vector<int> &arr, int s, int e)
           return;
      }
 
-     int mid = s + (e - s) / 2;
+     int mid = s + (e - s) / 2; 
      mergeSort(arr, s, mid);
      mergeSort(arr, mid + 1, e);
      merge(arr, s, e);
 }
-int partition(vector<int> &arr, int s, int e)
-{
-     int pivotIndex = s;
-     int pivotValue = arr[pivotIndex];
-     int c = 0;
-     for (int i = s + 1; i <= e; i++)
-     {
-          if (arr[i] < pivotValue)
-          {
-               c++;
-          }
-     }
-     pivotIndex = s + c;
-     swap(arr[pivotIndex], arr[s]);
-     int i = s;
-     int j = e;
-     while (i < pivotIndex && j > pivotIndex)
-     {
-          while (arr[i] < pivotValue)
-          {
-               i++;
-          }
-          while (arr[j] > pivotValue)
-          {
-               j--;
-          }
-          if (i < pivotIndex && j > pivotIndex)
-          {
-               swap(arr[i], arr[j]);
-               i++;
-               j--;
-          }
-     }
-     return pivotIndex;
-}
-void quickSort(vector<int> &arr, int s, int e)
-{
-
-     if (s >= e)
-     {
-          return;
-     }
-
-     int pivot = partition(arr, s, e);
-
-     quickSort(arr, s, pivot - 1);
-     quickSort(arr, pivot + 1, e);
-}
-
 int main()
 {
-     vector<int> arr = {5, 3, 1, 7, 4, 5, 13, 22, 6, 1, 8, 4};
+     vector<int> arr = {1, 6, 5, 1, 3, 9, 1};
      int size = arr.size();
-     quickSort(arr, 0, size - 1);
+     mergeSort(arr, 0, size - 1);
      cout << endl;
      cout << endl;
      for (int k = 0; k < size; k++)
