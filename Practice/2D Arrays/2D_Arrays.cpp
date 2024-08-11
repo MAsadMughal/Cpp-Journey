@@ -30,6 +30,15 @@ vector<vector<int>> matrixReshape(vector<vector<int>> &mat, int r, int c)
     }
     return arr;
 }
+int fact(int num)
+{
+    if (num == 0 || num == 1)
+    {
+
+        return 1;
+    }
+    return num * fact(num - 1);
+}
 int main()
 {
     vector<vector<int>> arr = {{1, 2, 3, 4},
@@ -38,12 +47,4 @@ int main()
     int r = 6;
     int c = 2;
     vector<vector<int>> arr2 = matrixReshape(arr, r, c);
-    for (int i = 0; i < r; i++)
-    {
-        for (int j = 0; j < c; j++)
-        {
-            cout << arr2[i][j] << " ";
-        }
-        cout << endl;
-    }
 }

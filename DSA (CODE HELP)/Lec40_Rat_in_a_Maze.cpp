@@ -54,19 +54,21 @@ void ratInMaze(vector<vector<int>> maze, int x, int y, vector<vector<int>> &visi
 }
 int main()
 {
-     vector<vector<int>> maze = {{1, 0, 0},
-                                 {1, 1, 1},
-                                 {1, 0, 1}};
+     vector<vector<int>> maze = {{1, 1, 0, 0},
+                                 {1, 1, 1, 0},
+                                 {1, 0, 1, 0},
+                                 {1, 0, 1, 1}};
      int size = maze.size();
      vector<vector<int>> visited(size, vector<int>(size, 0));
      vector<string> ans;
      string curr = "";
      if (maze[0][0] == 0)
      {
-          return;
+          return 0;
      }
      ratInMaze(maze, 0, 0, visited, curr, ans);
-     for (int i = 0; i < ans.size(); i++)
+     int size2 = ans.size();
+     for (int i = 0; i < size2; i++)
      {
           cout << ans[i] << endl;
      }
