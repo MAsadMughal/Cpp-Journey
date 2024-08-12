@@ -18,6 +18,9 @@ public:
         cout << "Freeing memory for " << this->value << endl;
     }
 };
+
+
+
 void insertAtTail(Node *&tail, int val)
 {
     Node *temp = new Node(val);
@@ -55,16 +58,54 @@ Node *reversingLinkedList_Iteratively(Node *&head)
     head = prev;
     return head;
 }
+Node *reversingLinkedList_Recursively(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    Node *rest = reversingLinkedList_Recursively(head->next); // 1->2->3->4->5 it returns 1->2->3-> (4<-5 returns
+    head->next->next = head;
+    head->next = NULL;
+    return rest;
+}
+
+int findingMiddle(Node *head)
+{
+    if (head->next == NULL || head->next->next == NULL)
+    {
+        return head->value;
+    }
+
+    Node *fast = head->next;
+    Node *slow = head;
+    while (fast != NULL)
+    {
+        fast = fast->next;
+
+        if (fast != NULL)
+        {
+            fast = fast->next;
+        }
+        slow = slow->next;
+    }
+    return slow->value;
+}
+
+
+
 int main()
 {
     Node *n1 = new Node(20);
     Node *head = n1;
     Node *tail = n1;
-    insertAtTail(tail, 15);
+    insertAtTail(tail, 12);
     insertAtTail(tail, 10);
+    insertAtTail(tail, 8);
     insertAtTail(tail, 5);
+    insertAtTail(tail, 1);
     print(head);
-    reversingLinkedList_Iteratively(head);
+
     print(head);
     while (head != NULL)
     {
