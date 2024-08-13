@@ -97,35 +97,8 @@ Node *deleteDuplicatesIn_UnSortedList(Node *head)
     }
     return head;
 }
-//N time complexity using map
+// N time complexity using map
 Node *deleteDuplicatesIn_UnSortedListUsingMap(Node *head)
-{
-    if (head == NULL || head->next == NULL)
-    {
-        return head;
-    }
-    map<int, bool> check;
-    check[head->value] = true;
-    Node *temp = head;
-
-    while (temp->next != NULL)
-    {
-        if (check[temp->next->value] != true)
-        {
-            check[temp->next->value] = true;
-            temp = temp->next;
-        }
-        else
-        {
-            Node *toDel = temp->next;
-            temp->next = temp->next->next;
-            delete toDel;
-        }
-    }
-    return head;
-}
-//
-Node *RemoveDuplicates(Node *head)
 {
     if (head == NULL || head->next == NULL)
     {
