@@ -58,21 +58,86 @@ Node *reverseList(Node *head) // Iteratively
     return prev;
 }
 
-int sum(Node *first, Node *second)
+// int sum(Node *first, Node *second) // This solution has boundary value problems for integers
+
+// {
+//     int f = 0;
+//     int s = 0;
+//     while (first != NULL)
+//     {
+//         f = (f * 10) + first->value;
+//         first = first->next;
+//     }
+//     while (second != NULL)
+//     {
+//         s = (s * 10) + second->value;
+//         second = second->next;
+//     }
+//     cout << f + s;
+// }
+
+void insert(Node *&head, Node *&tail, Node *val)
 {
-    int f = 0;
-    int s = 0;
-    while (first != NULL)
+    if (head == NULL)
     {
-        f = (f * 10) + first->value;
-        first = first->next;
+        head = val;
+        tail = val;
     }
-    while (second != NULL)
+    else
     {
-        s = (s * 10) + second->value;
-        second = second->next;
+        tail->next = val;
+        tail = tail->next;
     }
-    cout << f + s;
+}
+Node *reverse(Node *head)
+{
+    Node *prev = NULL;
+    Node *next = NULL;
+    Node *curr = head;
+    while (curr != NULL)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+Node *sumOfLists(Node *first, Node *second)
+{
+    int sum = 0;
+    int digit = 0;
+    int carry = 0;
+    Node *head = NULL;
+    Node *tail = NULL;
+    while (first != NULL || second != NULL || carry != 0)
+    {
+        int firstVal = 0;
+        int secondVal = 0;
+        if (first != NULL)
+        {
+            firstVal = first->value;
+        }
+        if (second != NULL)
+        {
+            secondVal = second->value;
+        }
+
+        sum = firstVal + secondVal + carry;
+        digit = sum % 10;
+        carry = sum / 10;
+        Node *val = new Node(digit);
+        insert(head, tail, val);
+        if (first != NULL)
+        {
+            first = first->next;
+        }
+        if (second != NULL)
+        {
+            second = second->next;
+        }
+    }
+    return head;
 }
 int main()
 {
@@ -85,8 +150,5 @@ int main()
 
     insertAtTail(tail1, 9);
     insertAtTail(tail2, 9);
-
-    print(head1);
-    print(head2);
-    cout << sum(head1, head2);
+    print(sumOfLists(head1, head2));
 }
