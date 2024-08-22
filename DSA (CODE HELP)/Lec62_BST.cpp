@@ -151,23 +151,58 @@ void preorder(node *root)
 {
     vector<int> ans;
     stack<node *> s;
-    node *curr = root;
-    while (curr != NULL || !s.empty())
+    if (root == NULL)
     {
-        while (curr != NULL)
-        {
-            ans.push_back(curr->data);
-            if (curr->left == NULL)
-            {
-                s.push(curr);
-            }
-            curr = curr->left;
-        }
-
-        curr = s.top()->right;
+        return;
+    }
+    s.push(root);
+    while (!s.empty())
+    {
+        node *curr = s.top();
         s.pop();
         ans.push_back(curr->data);
-        curr = curr->right;
+        if (curr->right)
+        {
+            s.push(curr->right);
+        }
+        if (curr->left)
+        {
+            s.push(curr->left);
+        }
+    }
+}
+
+void postorder(node *root)
+{
+    vector<int> ans;
+    stack<node *> s;
+    if (root == NULL)
+    {
+        return;
+    }
+    s.push(root);
+    stack<node *> s2;
+    while (!s.empty())
+    {
+        node *curr = s.top();
+        s2.push(curr);
+        s.pop();
+        ans.push_back(curr->data);
+        cout << curr->data;
+        if (curr->left)
+        {
+            s.push(curr->left);
+        }
+        if (curr->right)
+        {
+            s.push(curr->right);
+        }
+    }
+    cout << endl;
+    while (!s2.empty())
+    {
+        cout << s2.top()->data << " ";
+        s2.pop();
     }
 }
 
@@ -183,11 +218,11 @@ int main()
     reverseOrderTraversal(root);
     cout << endl;
     cout << "Pre Order Traversal" << endl;
-    preOrderTraversal(root);
+    preorder(root);
     cout << endl;
     cout << "In-Order Traversal" << endl;
     inorder(root);
     cout << endl;
     cout << "Post Order Traversal" << endl;
-    postOrderTraversal(root);
+    postorder(root);
 }
