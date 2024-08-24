@@ -303,6 +303,7 @@ void leftView(node *root, vector<int> &arr, int level)
     leftView(root->left, arr, level + 1);
     leftView(root->right, arr, level + 1);
 }
+// Right View
 void rightView(node *root, vector<int> &arr, int level)
 {
     if (root == NULL)
@@ -328,7 +329,5 @@ int main()
     root->right->left = new node(7);
     root->right->right = new node(8);
     root->right->right->right = new node(3);
-    vector<int> ans;
-    leftView(root, ans, 0);
     return 0;
 }

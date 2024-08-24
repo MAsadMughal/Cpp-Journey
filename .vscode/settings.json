@@ -42,6 +42,8 @@
         "stack": "cpp",
         "deque": "cpp",
         "xtree": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "xhash": "cpp",
+        "unordered_map": "cpp"
     }
 }
